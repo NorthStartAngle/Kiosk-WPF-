@@ -1,0 +1,14 @@
+﻿<Window x:Class="kiosk_deployer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kiosk_deployer"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="1080"
+        Title="Kiosk-blue" Height="650" Width="800" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None">
+    <Grid>
+        <Frame x:Name="frmContainer" Source="/Pages/startPage.xaml" NavigationUIVisibility="Hidden">
+        </Frame>
+    </Grid>
+</Window>
