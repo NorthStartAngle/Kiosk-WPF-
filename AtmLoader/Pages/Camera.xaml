@@ -1,0 +1,63 @@
+﻿<Page x:Class="AtmLoader.Pages.Camera"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:AtmLoader"
+    mc:Ignorable="d" 
+    xmlns:pages="clr-namespace:AtmLoader.Pages"
+    xmlns:viewmodels="clr-namespace:AtmLoader.ViewModels"
+    xmlns:templates="clr-namespace:AtmCommon.Templates"
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    d:DesignHeight="750" d:DesignWidth="1080"
+    Title="Camera Page"
+    >
+
+    <Grid>
+        <templates:Blank>
+            <Grid Margin="10"  Style="{StaticResource GridStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Button Width="200" Margin="20, 0, 0, 0" Click="UploadButton_Click">Upload</Button>
+                    <Button Width="200" Margin="20, 0, 0, 0" Click="ChangeCamButton_Click">Change Cam</Button>
+                    <!--<Label Content="Camera: " Margin="20, 0, 0, 0" VerticalAlignment="Center"></Label>-->
+                    <Label Content="{Binding ActiveCamera}" Margin="20, 0, 0, 0" VerticalAlignment="Center"></Label>
+                    <!--<Label Content="Status: " Margin="20, 0, 0, 0" VerticalAlignment="Center"></Label>-->
+                    <Label Content="{Binding Status}" Margin="20, 0, 0, 0" VerticalAlignment="Center"></Label>
+                </StackPanel>
+                
+                <Image Source="{Binding CameraImage}" Stretch="Uniform" Grid.Row="1" Margin="10" />
+
+            </Grid>
+        </templates:Blank>
+
+        <Grid Height="600" Width="800" Visibility="{Binding DialogVisibility, FallbackValue=Hidden}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <controls:Dialog_OkCancel>
+                <TextBox Text="{Binding DialogScript, FallbackValue=No script}" FontFamily="{StaticResource ScriptFontFamily}" Margin="0,0,0,60" Height="Auto" Padding="10" MaxHeight="200"/>
+            </controls:Dialog_OkCancel>
+        </Grid>
+    </Grid>
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static pages:Camera.OkButton_Command}" Executed="OkButton_Executed" CanExecute="OkButton_CanExecute"/>
+        <CommandBinding Command="{x:Static pages:Camera.CancelButton_Command}" Executed="CancelButton_Executed" CanExecute="CancelButton_CanExecute"/>
+    </Page.CommandBindings>
+    <Page.DataContext>
+        <viewmodels:Camera
+            PageTitle="Camera" 
+            Description="Check Camera."
+            
+            SystemButton_Visibility="Hidden"
+            
+            DialogVisibility="Hidden"
+            DialogText="Are you sure you want to update Windows?"
+            Dialog_OkButton_Content="OK"
+            Dialog_OkButton_Command="{x:Static pages:Camera.OkButton_Command}"
+            Dialog_CancelButton_Content="Cancel"
+            Dialog_CancelButton_Command="{x:Static pages:Camera.CancelButton_Command}"
+            />
+    </Page.DataContext>
+</Page>

@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup Label="Globals">
+      <WebView2UseWinRT>False</WebView2UseWinRT>
+      <WebView2LoaderPreference>Dynamic</WebView2LoaderPreference>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <EnableComHosting>true</EnableComHosting>
+        <EnableRegFreeCom>true</EnableRegFreeCom>
+        <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <BaseOutputPath>..\Deploy\AtmUi\</BaseOutputPath>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RunPostBuildEvent>Always</RunPostBuildEvent>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <UseWindowsForms>True</UseWindowsForms>
+        <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Controls\**" />
+      <Compile Remove="Monitor\**" />
+      <EmbeddedResource Remove="Controls\**" />
+      <EmbeddedResource Remove="Monitor\**" />
+      <None Remove="Controls\**" />
+      <None Remove="Monitor\**" />
+      <Page Remove="Controls\**" />
+      <Page Remove="Monitor\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="IAtmNavigation.cs" />
+      <Compile Remove="Navigator.cs" />
+      <Compile Remove="ViewModels\Base.cs" />
+      <Compile Remove="ViewModels\TemplateViewModel.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="res\blue.bmp" />
+      <None Remove="res\red.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Remove="CommonStyles.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.4" />
+      <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1823.32" />
+      <PackageReference Include="System.DirectoryServices.AccountManagement" Version="7.0.0" />
+      <PackageReference Include="System.ServiceModel.Primitives" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AtmApi\AtmApi.vcxproj" />
+      <ProjectReference Include="..\AtmLib\AtmLib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="System.Device">
+        <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Device\v4.0_4.0.0.0__b77a5c561934e089\System.Device.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="res\blue.bmp">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="res\red.bmp">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Properties\Settings.Designer.cs">
+        <DesignTimeSharedInput>True</DesignTimeSharedInput>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Settings.settings</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Properties\Settings.settings">
+        <Generator>SettingsSingleFileGenerator</Generator>
+        <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      </None>
+      <None Update="README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
+
+    <Import Project="..\AtmCommon\AtmCommon.projitems" Label="Shared" />
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="xcopy /i /c /y /f &quot;$(SolutionDir)Deploy\AtmApi\$(Configuration)\AtmApi.dll&quot; &quot;$(TargetDir)&quot;" />
+    </Target>
+</Project>

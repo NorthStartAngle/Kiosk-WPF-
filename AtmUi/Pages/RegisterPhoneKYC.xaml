@@ -1,0 +1,54 @@
+﻿<Page x:Class="AtmUi.Pages.RegisterPhoneKYC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:AtmUi.Pages"
+    xmlns:pages="clr-namespace:AtmUi.Pages"
+    xmlns:viewmodels="clr-namespace:AtmUi.ViewModels"
+    xmlns:templates="clr-namespace:AtmUi.Templates"
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="1920" d:DesignWidth="1080"
+    Loaded="Page_Loaded"
+    Title="{x:Static local:RegisterPhoneKYC.LinkName}"
+    >
+    <Grid>
+        <templates:Form Loaded="Form_Loaded" />
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,185,0,0">
+            <StackPanel>
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
+                    <Label Content="Given Name:" HorizontalAlignment="Left" />
+                    <TextBox x:Name="UserGivenName" Width="221" Loaded="RegisterKeyboardControl" TabIndex="0" Text="{Binding UserGivenName}"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
+                    <Label Content="Surname:" HorizontalAlignment="Left" />
+                    <TextBox x:Name="UserSurname" Width="221" Loaded="RegisterKeyboardControl" TabIndex="1" Text="{Binding UserSurname}"/>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <controls:TouchKeyboard x:Name="Keyboard" ShowCloseButton="False" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="{StaticResource KeyboardMargin}" Background="{StaticResource KeyboardBackground}" />
+        </Grid>
+        <Grid Height="500" Width="800" Visibility="{Binding DialogVisibility, FallbackValue=Hidden}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <controls:Dialog_InProgress x:Name="Dialog" />
+        </Grid>
+    </Grid>
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static pages:RegisterPhoneKYC.Submit_Command}" Executed="Submit_CommandExecuted" CanExecute="Submit_CommandCanExecute"/>
+    </Page.CommandBindings>
+    <Page.DataContext>
+        <viewmodels:RegisterPhoneKYC
+            PageTitle="{x:Static pages:RegisterPhoneKYC.LinkName}" 
+            Description="Provide the requested information and touch the Submit button."
+            
+            Button1_IsEnabled="True" 
+            Button1_Content="Submit"
+            Button1_Command="{x:Static pages:RegisterPhoneKYC.Submit_Command}"
+            
+            DialogText="Please wait..."
+
+            SystemButton_Link="{StaticResource SystemButtonLink}"
+            />
+    </Page.DataContext>
+</Page>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AtmUi": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

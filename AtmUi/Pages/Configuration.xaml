@@ -1,0 +1,77 @@
+﻿<Page x:Class="AtmUi.Pages.Configuration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:AtmUi"
+    mc:Ignorable="d" 
+    xmlns:pages="clr-namespace:AtmUi.Pages"
+    xmlns:viewmodels="clr-namespace:AtmUi.ViewModels"
+    xmlns:templates="clr-namespace:AtmCommon.Templates"
+    d:DesignHeight="750" d:DesignWidth="1080"
+    Title="Configuration Page"
+    >
+
+    <templates:Blank>
+        <Grid Margin="20, 0, 20, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto" MaxHeight="300"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Row="0">
+                <TextBlock FontSize="14pt" Margin="0, 10, 0, 0"> .Net</TextBlock>
+                <TextBlock FontSize="12pt"> Current .Net version is
+                <TextBlock Text="{Binding DotNetVersion}"/> . The target version is <TextBlock Text="{Binding TargetDotNetVersion}"/>. <Hyperlink Click="OnInstallDotNetClick"> Install the target version. </Hyperlink> </TextBlock>
+                <TextBlock FontSize="12pt" Text="{Binding InstallError}" Visibility="{Binding InstallError_Visibility}"/>
+            </StackPanel>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding NetPackages}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Width="300px"></TextBlock>
+                            <TextBlock Text="{Binding Path}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock Grid.Row="2" FontSize="14pt" Margin="0, 10, 0, 0"> Modules</TextBlock>
+
+            <ListBox Grid.Row="3" ItemsSource="{Binding AppModules}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Width="300px"></TextBlock>
+                            <TextBlock Text="{Binding MemorySize}" Width="100px"></TextBlock>
+                            <TextBlock Text="{Binding Path}"></TextBlock>
+                            <TextBlock Text="{Binding Site}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Grid.Row="4" Orientation="Vertical">
+                <TextBlock Grid.Row="6" FontSize="14pt" Margin="0, 10, 0, 0"> OS</TextBlock>
+                <TextBlock Grid.Row="7" FontSize="12pt"> Current OS version is
+                <TextBlock Text="{Binding OSVersion}"/> . The target OS version is <TextBlock Text="{Binding TargetOSVersion}"/>.  </TextBlock>
+
+            </StackPanel>
+
+
+        </Grid>
+    </templates:Blank>
+
+    <Page.DataContext>
+        <viewmodels:Configuration
+            PageTitle="Configuration" 
+            Description="Software configuration page."
+            
+            SystemButton_Visibility="Hidden"
+            />
+    </Page.DataContext>
+</Page>
