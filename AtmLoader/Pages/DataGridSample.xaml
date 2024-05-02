@@ -1,0 +1,86 @@
+﻿<Page 
+    x:Class="AtmLoader.Pages.DataGridSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:AtmLoader.Pages"
+    xmlns:pages="clr-namespace:AtmLoader.Pages"
+    xmlns:viewmodels="clr-namespace:AtmLoader.ViewModels"
+    xmlns:templates="clr-namespace:AtmCommon.Templates"
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="600" d:DesignWidth="1080"
+    Title="DataGridSample"
+    >
+    <Grid>
+        <Grid>
+            <templates:Blank>
+                <DataGrid AutoGenerateColumns="False" Tag="Users" CanUserAddRows="False" ItemsSource="{Binding Users}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource DataGridTextBlockStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Name}" Loaded="RegisterKeyboardControl" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Authority">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Authority}" Style="{StaticResource DataGridTextBlockStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Authority}" Loaded="RegisterKeyboardControl" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Permission">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Permission}" Style="{StaticResource DataGridTextBlockStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Permission}" Loaded="RegisterKeyboardControl" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="IsLogin">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding IsLogin}" Style="{StaticResource DataGridTextBlockStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding IsLogin}" Loaded="RegisterKeyboardControl" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </templates:Blank>
+        </Grid>
+        <Grid>
+            <controls:TouchKeyboard x:Name="TouchKeyboard" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,155" Background="{StaticResource KeyboardBackground}" />
+        </Grid>
+    </Grid>
+    <Page.DataContext>
+        <viewmodels:DataGridSample
+            PageTitle="{x:Static pages:DataGridSample.LinkName}" 
+            SystemButton_Visibility="Hidden"
+            >
+        </viewmodels:DataGridSample>
+    </Page.DataContext>
+</Page>

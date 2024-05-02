@@ -1,0 +1,152 @@
+﻿<Page x:Class="AtmLoader.Pages.Monitor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:AtmLoader.Pages"
+    xmlns:viewmodels="clr-namespace:AtmLoader.ViewModels"
+    xmlns:templates="clr-namespace:AtmCommon.Templates"
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="1000" d:DesignWidth="1080"
+    Loaded="Page_Loaded"
+    Title="Monitor"
+    >
+    <Grid>
+        <templates:Blank GotFocus="Blank_GotFocus">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left"
+                        Content="{Binding CpuRamUsage}"
+                        Grid.Column="0">
+                    </Label>
+
+                    <StackPanel 
+                        Orientation="Horizontal"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        >
+
+                        <Label VerticalAlignment="Center">Seconds:</Label>
+                        <TextBox Loaded="RegisterKeyboardControl" Margin="5" Height="40" VerticalAlignment="Stretch" Width="50" Text="{Binding Interval}"></TextBox>
+                        <Button Style="{StaticResource ButtonStyle}" Margin="5" Width="250" Content="Start Monitor" VerticalAlignment="Center" IsEnabled="{Binding StartButton_Enabled}" Click="OnStartMonitor"></Button>
+                        <Button Style="{StaticResource ButtonStyle}" Margin="5" Width="250" Content="Stop Monitor" VerticalAlignment="Center" IsEnabled="{Binding StopButton_Enabled}" Click="OnStopMointor" ></Button>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="0" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="53*"></ColumnDefinition>
+                        <ColumnDefinition Width="43*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">Device List</Label>
+
+                    <TextBox 
+                        Grid.Row="0"
+                        Grid.Column="1"  
+                        VerticalAlignment="Center"
+                        TextAlignment="Right"
+                        Text="{Binding SearchText}"
+                        TextChanged="OnSearch"
+                        Loaded="RegisterKeyboardControl"
+                        />
+
+                    <ListBox 
+                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                        BorderThickness="1"
+                        Margin="0, 5, 0, 0"
+                        ItemsSource="{Binding Path=DeviceList}"
+                        SelectedItem="{Binding SelectedDevice}"
+                        SelectionChanged="OnDeviceSelectionChanged"
+                        KeyDown="DeviceListBox_KeyDown"
+                        >
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="local:Device">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="{Binding IconPath}"></Image>
+                                    <TextBlock Margin="5, 0, 0, 0" Grid.Column="1" Text="{Binding Name}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">Device Properties</Label>
+
+                    <ListBox 
+                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                        VerticalAlignment="Stretch" 
+                        BorderThickness="1"
+                        Margin="0, 5, 0, 0"
+                        ItemsSource="{Binding DevicePropList}"
+                        SelectionMode="Multiple"
+                        KeyDown="DevicePropListBox_KeyDown"
+                        >
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="local:DeviceProp">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180" SharedSizeGroup="Column1" />
+                                        <ColumnDefinition Width="*" SharedSizeGroup="Column2" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding Key}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Value}" />
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </templates:Blank>
+        <Grid>
+            <controls:TouchKeyboard x:Name="TouchKeyboard" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,155" Background="{StaticResource KeyboardBackground}" />
+        </Grid>
+    </Grid>
+    <Page.DataContext>
+        <viewmodels:Monitor
+            PageTitle="Monitor" 
+            Description="This monitor shows all devices."
+            
+            SystemButton_Visibility="Hidden"
+            />
+    </Page.DataContext>
+</Page>

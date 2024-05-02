@@ -1,0 +1,65 @@
+﻿<Page x:Class="AtmLoader.Pages.DemoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:AtmLoader.Pages"
+    xmlns:pages="clr-namespace:AtmLoader.Pages"
+    xmlns:viewmodels="clr-namespace:AtmCommon.ViewModels"
+    xmlns:templates="clr-namespace:AtmCommon.Templates"
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="1000" d:DesignWidth="1080"
+    Title="DemoPage"
+    >
+    <Grid>
+        <Grid>
+            <templates:OptionScreen8 Loaded="OptionScreen_Loaded"/>
+        </Grid>
+        <Grid Width="800" Height="500" Visibility="{Binding DialogVisibility, FallbackValue=Hidden}" >
+            <controls:Dialog_OkCancel x:Name="Dialog" Visibility="{Binding DialogVisibility, FallbackValue=Hidden}" />
+        </Grid>
+    </Grid>
+    <Page.CommandBindings>
+    </Page.CommandBindings>
+    <Page.DataContext>
+        <viewmodels:OptionScreen 
+            PageTitle="{x:Static pages:DemoPage.LinkName}" 
+
+            Button1_Content="{x:Static pages:KeyboardDemo.LinkName}"
+            Button1_Link="{x:Static pages:KeyboardDemo.Path}"
+            Button1_IsEnabled="{x:Static pages:KeyboardDemo.IsNavigationEnabled}"
+
+            Button2_Content="{x:Static pages:SampleWeb.LinkName}"
+            Button2_Link="{x:Static pages:SampleWeb.Path}"
+            Button2_IsEnabled="{x:Static pages:SampleWeb.IsNavigationEnabled}"
+
+            Button3_Content="{x:Static pages:ProgressDialogSample.LinkName}"
+            Button3_Link="{x:Static pages:ProgressDialogSample.Path}"
+            Button3_IsEnabled="{x:Static pages:ProgressDialogSample.IsNavigationEnabled}"
+            
+            Button4_Content="{x:Static pages:DataGridSample.LinkName}"
+            Button4_Link="{x:Static pages:DataGridSample.Path}"
+            Button4_IsEnabled="{x:Static pages:DataGridSample.IsNavigationEnabled}"
+            
+            Button5_Content="{x:Static pages:ListBoxSample.LinkName}"
+            Button5_Link="{x:Static pages:ListBoxSample.Path}"
+            Button5_IsEnabled="{x:Static pages:ListBoxSample.IsNavigationEnabled}"
+            
+            SystemButton_Visibility="Hidden"
+            />
+        <!--
+            Button1_Content="{x:Static pages:Configuration.LinkName}"
+            Button1_Link="{x:Static pages:Configuration.Path}"
+            
+            Button2_Content="{x:Static pages:Monitor.LinkName}"
+            Button2_Link="{x:Static pages:Monitor.Path}"
+            
+            Button3_Content="{x:Static pages:LockDown.LinkName}"
+            Button3_Link="{x:Static pages:LockDown.Path}"
+            
+            Button4_Content="{x:Static pages:CheckList.LinkName}"
+            Button4_Link="{x:Static pages:CheckList.Path}"
+        -->
+    </Page.DataContext>
+</Page>
