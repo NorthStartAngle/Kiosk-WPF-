@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="AtmCommon.Controls.Dialog_OkCancel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="800"
+    >
+    <Grid Margin="10">
+        <Grid.Background>
+            <SolidColorBrush Opacity="0"/>
+        </Grid.Background>
+        <Border BorderBrush="Black" BorderThickness="1,1,1,1">
+            <Grid Background="{StaticResource DialogBackground}">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding DialogText, FallbackValue=Descriptive text}" FontSize="30" Margin="0,0,0,40" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                    <!-- Optional content -->
+                    <ContentPresenter Grid.Row="1" Margin="20,0" Content="{Binding InnerContent, RelativeSource={RelativeSource AncestorType={x:Type controls:Dialog_OkCancel}}}" />
+                    <!-- OkButton -->
+                    <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Content="{Binding Dialog_OkButton_Content, FallbackValue=OK}" Command="{Binding Dialog_OkButton_Command}" FontFamily="{Binding Dialog_OkButton_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Dialog_OkButton_FontSize, FallbackValue=28}" Width="420" Margin="0,0,0,60" />
+                    <!-- CancelButton -->
+                    <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Content="{Binding Dialog_CancelButton_Content, FallbackValue=Cancel}" Command="{Binding Dialog_CancelButton_Command}" FontFamily="{Binding Dialog_CancelButton_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Dialog_CancelButton_FontSize, FallbackValue=28}" Width="420" Margin="0,0,0,20" />
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid.Effect>
+            <DropShadowEffect ShadowDepth="0" Direction="315" BlurRadius="20" />
+        </Grid.Effect>
+    </Grid>
+</UserControl>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ed194df5-1c5b-4a74-8c42-747a55a5e447</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AtmCommon</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Dialog_InProgress.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Dialog_OkCancel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\FixedNavigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\Base.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\Blank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\CustomBase.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\Form.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\InProgress.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\OneButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\OptionScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\OptionScreen8.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Templates\Web.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="$(MSBuildThisFileDirectory)CommonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\TouchKeyboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Dialog_InProgress.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Dialog_OkCancel.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FixedNavigation.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TouchKeyboard.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityCollapsedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ColumnWidthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IsTypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ProportionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IAtmNavigation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Navigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\Base.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\Blank.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\CustomBase.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\Form.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\InProgress.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\OneButton.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\OptionScreen.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\OptionScreen8.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Templates\Web.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Blank.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CustomBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Form.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\InProgress .cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\OneButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\OptionScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TemplateViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Web.cs" />
+  </ItemGroup>
+</Project>

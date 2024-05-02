@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="AtmCommon.Templates.OptionScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local="clr-namespace:AtmCommon.Templates" 
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="750" d:DesignWidth="1080"
+    >
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static local:OptionScreen.Button1_Command}" Executed="Button1_CommandExecuted" CanExecute="Button1_CommandCanExecute"/>
+        <CommandBinding Command="{x:Static local:OptionScreen.Button2_Command}" Executed="Button2_CommandExecuted" CanExecute="Button2_CommandCanExecute"/>
+        <CommandBinding Command="{x:Static local:OptionScreen.Button3_Command}" Executed="Button3_CommandExecuted" CanExecute="Button3_CommandCanExecute"/>
+        <CommandBinding Command="{x:Static local:OptionScreen.Button4_Command}" Executed="Button4_CommandExecuted" CanExecute="Button4_CommandCanExecute"/>
+    </UserControl.CommandBindings>
+    <local:Base Loaded="Base_Loaded">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,50">
+                <Label Style="{StaticResource LabelStyle}" Content="{Binding PageTitle, FallbackValue=Page Title}" FontFamily="{Binding Label_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Label_FontSize, FallbackValue=36}" />
+                <Label Margin="0,70,0,0" Style="{StaticResource LabelStyle}" Content="{Binding Description, FallbackValue=Descriptive text}" FontFamily="{Binding Label_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Description_FontSize, FallbackValue=28}" />
+
+                <Button Margin="80,160,0,0" Width="420" Style="{StaticResource ButtonStyle}" Command="{Binding Button1_Command}" Visibility="{Binding Button1_Visibility}" IsEnabled="{Binding Button1_IsEnabled}" Content="{Binding Button1_Content, FallbackValue=Button 1}" FontFamily="{Binding Button1_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Button1_FontSize, FallbackValue=30}" HorizontalAlignment="Left"  />
+                <Button Margin="0,160,80,0" Width="420" Style="{StaticResource ButtonStyle}" Command="{Binding Button2_Command}" Visibility="{Binding Button2_Visibility}" IsEnabled="{Binding Button2_IsEnabled}" Content="{Binding Button2_Content, FallbackValue=Button 2}" FontFamily="{Binding Button2_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Button2_FontSize, FallbackValue=30}" HorizontalAlignment="Right"  />
+                <Button Margin="80,300,0,0" Width="420" Style="{StaticResource ButtonStyle}" Command="{Binding Button3_Command}" Visibility="{Binding Button3_Visibility}" IsEnabled="{Binding Button3_IsEnabled}" Content="{Binding Button3_Content, FallbackValue=Button 3}" FontFamily="{Binding Button3_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Button3_FontSize, FallbackValue=30}" HorizontalAlignment="Left"  />
+                <Button Margin="0,300,80,0" Width="420" Style="{StaticResource ButtonStyle}" Command="{Binding Button4_Command}" Visibility="{Binding Button4_Visibility}" IsEnabled="{Binding Button4_IsEnabled}" Content="{Binding Button4_Content, FallbackValue=Button 4}" FontFamily="{Binding Button4_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Button4_FontSize, FallbackValue=30}" HorizontalAlignment="Right"  />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <ContentPresenter Content="{Binding Content, RelativeSource={RelativeSource AncestorType={x:Type local:OptionScreen}}}"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <controls:FixedNavigation Loaded="FixedNavigation_Loaded"/>
+            </Grid>
+        </Grid>
+    </local:Base>
+</UserControl>

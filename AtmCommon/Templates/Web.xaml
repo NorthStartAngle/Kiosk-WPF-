@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="AtmCommon.Templates.Web"
+    xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local="clr-namespace:AtmCommon.Templates" 
+    xmlns:controls="clr-namespace:AtmCommon.Controls"
+    xmlns:templates="clr-namespace:AtmCommon.Templates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="1000" d:DesignWidth="1080"
+    >
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static local:Web.BackButton_Command}" Executed="BackButton_CommandExecuted" CanExecute="BackButton_CommandCanExecute"/>
+    </UserControl.CommandBindings>
+    <templates:Base Loaded="Base_Loaded">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="0,0,0,20">
+                <Label Style="{StaticResource LabelStyle}" Content="{Binding PageTitle, FallbackValue=Page Title}" FontFamily="{Binding Label_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Label_FontSize, FallbackValue=36}" />
+                <Label Style="{StaticResource LabelStyle}" Content="{Binding Description, FallbackValue=Descriptive text}" FontFamily="{Binding Label_FontFamily, FallbackValue=Segoe UI Bold}" FontSize="{Binding Descripton_FontSize, FallbackValue=28}" Margin="0,73,0,0" />
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0,0,0,20">
+                <Wpf:WebView2 Source="{Binding WebSource}" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <controls:FixedNavigation/>
+            </Grid>
+        </Grid>
+    </templates:Base>
+</UserControl>

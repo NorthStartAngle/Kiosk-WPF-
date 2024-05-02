@@ -1,0 +1,668 @@
+﻿<UserControl
+    x:Class="AtmCommon.Controls.TouchKeyboard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AtmCommon.Controls"
+    xmlns:util="clr-namespace:AtmCommon.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="1080"
+    IsVisibleChanged="TouchKeyboard_IsVisibleChanged"
+    Focusable="False"
+    >
+    <UserControl.Resources>
+        <util:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter" />
+        <util:ProportionConverter x:Key="ProportionConverter" />
+        <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="68"/>
+            <Setter Property="Height" Value="82"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        
+        <Grid Margin="0,18,0,0" >
+            <Grid Name="ControlButtons">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="13" Grid.ColumnSpan="1" Grid.Row="0" Tag="Back" Content="&#x232B;" Click="Button_Click" />
+
+                <Button x:Name="CapsButton" Grid.Column="00" Grid.ColumnSpan="2" Grid.Row="2" Width="140" Margin="0,0,0,0" Click="CapsButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Aa  " Foreground="{StaticResource ButtonForeground}" VerticalAlignment="Center" FontWeight="Normal" 
+                                   FontSize="{Binding ElementName=CapsText, Path=FontSize, Converter={StaticResource ProportionConverter}, ConverterParameter=0.6}"/>
+                        <TextBlock x:Name="CapsText" Text="Caps" Foreground="{StaticResource ButtonForeground}" />
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="LeftShift"  Grid.Column="00" Grid.ColumnSpan="3" Grid.Row="3" Content="&#x21E7; Shift" Width="180" Click="Shift_Click" Margin="0,0,40,0"/>
+                <Button x:Name="RightShift" Grid.Column="12" Grid.ColumnSpan="2" Grid.Row="3" Content="&#x21E7; Shift" Width="100" Click="Shift_Click" Margin="40,0,0,0"/>
+
+                <Button Grid.Column="00" Grid.ColumnSpan="2" Grid.Row="4" Width="100" Margin="0,0,40,0" FontWeight="Bold" Tag="up" Content="&#x2191;" Click="UpButton_Click" />
+                <Button Grid.Column="01" Grid.ColumnSpan="2" Grid.Row="4" Width="100" Margin="40,0,0,0" FontWeight="Bold" Tag="down" Content="&#x2193;" Click="DownButton_Click" />
+                <Button Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="4" Width="100" Margin="0,0,40,0" FontWeight="Bold" Tag="left" Content="&#x2190;" Click="LeftButton_Click" />
+                <Button Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="4" Width="100" Margin="40,0,0,0" FontWeight="Bold" Tag="right" Content="&#x2192;" Click="RightButton_Click" />
+                
+                <Button Grid.Column="02" Grid.ColumnSpan="9" Grid.Row="4" Width="518" Margin="0,0,0,0" Tag=" " Content=" " Click="Button_Click" />
+                <Button Grid.Column="13" Grid.ColumnSpan="1" Grid.Row="4" Width="060" Content="&#x2716;" Click="CloseButton_Click" Visibility="{Binding ShowCloseButton, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}" />                
+            </Grid>
+
+
+            <Grid Name="Unshifted">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Tab" Grid.Column="00" Grid.ColumnSpan="2" Grid.Row="1" Content="&#x21E5; Tab" Width="100" Click="Tab_Click" Margin="0,0,40,0"/>
+                <Button Grid.Column="0" Grid.Row="0" Tag="`" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >~</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">`</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="0" Tag="1" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">!</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">1</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="2" Grid.Row="0" Tag="2" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">@</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">2</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="3" Grid.Row="0" Tag="3" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">#</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">3</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="4" Grid.Row="0" Tag="4" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">$</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">4</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="5" Grid.Row="0" Tag="5" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">%</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">5</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="6" Grid.Row="0" Tag="6" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">^</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">6</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="7" Grid.Row="0" Tag="7" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">&amp;</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">7</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="8" Grid.Row="0" Tag="8" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">*</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">8</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="9" Grid.Row="0" Tag="9" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">(</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">9</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="10" Grid.Row="0" Tag="0" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">)</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">0</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="11" Grid.Row="0" Tag="-" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">_</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">-</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="12" Grid.Row="0" Tag="=" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">+</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">=</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="1" Tag="[" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >{</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">[</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="12" Grid.ColumnSpan="2" Grid.Row="1" Tag="]" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >}</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">]</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="11" Grid.ColumnSpan="1" Grid.Row="2" Tag=";" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >:</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold" >;</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="12" Grid.ColumnSpan="1" Grid.Row="2" Tag="'" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >"</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold" >'</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="13" Grid.ColumnSpan="1" Grid.Row="2" Tag="\" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >|</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold" >\</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="09" Grid.ColumnSpan="2" Grid.Row="3" Tag="," Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >&lt;</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold" >,</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="3" Tag="." Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">&gt;</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold">.</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="3" Tag="/" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">?</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold">/</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+
+
+            <Grid Name="Shifted" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="ShiftTab" Grid.Column="00" Grid.ColumnSpan="2" Grid.Row="1" Content="&#x21E4; Tab" Width="100" Click="Tab_Click" Margin="0,0,40,0"/>
+                <Button Grid.Column="00" Grid.Row="0" Tag="~" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" >~</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">`</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="01" Grid.Row="0" Tag="!" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">!</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">1</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="02" Grid.Row="0" Tag="@" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">@</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">2</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="03" Grid.Row="0" Tag="#" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">#</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">3</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="04" Grid.Row="0" Tag="$" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">$</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">4</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="05" Grid.Row="0" Tag="%" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">%</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">5</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="06" Grid.Row="0" Tag="^" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">^</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">6</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="07" Grid.Row="0" Tag="&amp;" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">&amp;</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">7</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="08" Grid.Row="0" Tag="*" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">*</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">8</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="09" Grid.Row="0" Tag="(" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">(</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">9</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="10" Grid.Row="0" Tag=")" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">)</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">0</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="11" Grid.Row="0" Tag="_" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">_</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">-</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="12" Grid.Row="0" Tag="+" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">+</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">=</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="1" Tag="\{" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">{</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">[</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="12" Grid.ColumnSpan="2" Grid.Row="1" Tag="&#125;" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">}</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">]</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="11" Grid.ColumnSpan="1" Grid.Row="2" Tag=":" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold" >:</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >;</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="12" Grid.ColumnSpan="1" Grid.Row="2" Tag="&quot;" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold" >"</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >'</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="13" Grid.ColumnSpan="1" Grid.Row="2" Tag="|" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0">|</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light" >\</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="09" Grid.ColumnSpan="2" Grid.Row="3" Tag="&lt;" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold">&lt;</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">,</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="3" Tag=">" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold">&gt;</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">.</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="3" Tag="?" Click="Button_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Bold">?</TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock Foreground="{StaticResource ButtonForeground}" Padding="0" FontWeight="Light">/</TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <Grid Name="Lowercase">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="01" Grid.ColumnSpan="2" Grid.Row="1" Tag="q" Content="q" Click="Button_Click"/>
+                <Button Grid.Column="02" Grid.ColumnSpan="2" Grid.Row="1" Tag="w" Content="w" Click="Button_Click"/>
+                <Button Grid.Column="03" Grid.ColumnSpan="2" Grid.Row="1" Tag="e" Content="e" Click="Button_Click"/>
+                <Button Grid.Column="04" Grid.ColumnSpan="2" Grid.Row="1" Tag="r" Content="r" Click="Button_Click"/>
+                <Button Grid.Column="05" Grid.ColumnSpan="2" Grid.Row="1" Tag="t" Content="t" Click="Button_Click"/>
+                <Button Grid.Column="06" Grid.ColumnSpan="2" Grid.Row="1" Tag="y" Content="y" Click="Button_Click"/>
+                <Button Grid.Column="07" Grid.ColumnSpan="2" Grid.Row="1" Tag="u" Content="u" Click="Button_Click"/>
+                <Button Grid.Column="08" Grid.ColumnSpan="2" Grid.Row="1" Tag="i" Content="i" Click="Button_Click"/>
+                <Button Grid.Column="09" Grid.ColumnSpan="2" Grid.Row="1" Tag="o" Content="o" Click="Button_Click"/>
+                <Button Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="1" Tag="p" Content="p" Click="Button_Click"/>
+
+                <Button Grid.Column="02" Grid.ColumnSpan="1" Grid.Row="2" Tag="a" Content="a" Click="Button_Click"/>
+                <Button Grid.Column="03" Grid.ColumnSpan="1" Grid.Row="2" Tag="s" Content="s" Click="Button_Click"/>
+                <Button Grid.Column="04" Grid.ColumnSpan="1" Grid.Row="2" Tag="d" Content="d" Click="Button_Click"/>
+                <Button Grid.Column="05" Grid.ColumnSpan="1" Grid.Row="2" Tag="f" Content="f" Click="Button_Click"/>
+                <Button Grid.Column="06" Grid.ColumnSpan="1" Grid.Row="2" Tag="g" Content="g" Click="Button_Click"/>
+                <Button Grid.Column="07" Grid.ColumnSpan="1" Grid.Row="2" Tag="h" Content="h" Click="Button_Click"/>
+                <Button Grid.Column="08" Grid.ColumnSpan="1" Grid.Row="2" Tag="j" Content="j" Click="Button_Click"/>
+                <Button Grid.Column="09" Grid.ColumnSpan="1" Grid.Row="2" Tag="k" Content="k" Click="Button_Click"/>
+                <Button Grid.Column="10" Grid.ColumnSpan="1" Grid.Row="2" Tag="l" Content="l" Click="Button_Click"/>
+
+                <Button Grid.Column="02" Grid.ColumnSpan="2" Grid.Row="3" Tag="z" Content="z" Click="Button_Click"/>
+                <Button Grid.Column="03" Grid.ColumnSpan="2" Grid.Row="3" Tag="x" Content="x" Click="Button_Click"/>
+                <Button Grid.Column="04" Grid.ColumnSpan="2" Grid.Row="3" Tag="c" Content="c" Click="Button_Click"/>
+                <Button Grid.Column="05" Grid.ColumnSpan="2" Grid.Row="3" Tag="v" Content="v" Click="Button_Click"/>
+                <Button Grid.Column="06" Grid.ColumnSpan="2" Grid.Row="3" Tag="b" Content="b" Click="Button_Click"/>
+                <Button Grid.Column="07" Grid.ColumnSpan="2" Grid.Row="3" Tag="n" Content="n" Click="Button_Click"/>
+                <Button Grid.Column="08" Grid.ColumnSpan="2" Grid.Row="3" Tag="m" Content="m" Click="Button_Click"/>
+            </Grid>
+
+            <Grid Name="Uppercase" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                    <ColumnDefinition Width="77"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                    <RowDefinition Height="92"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="01" Grid.ColumnSpan="2" Grid.Row="1" Tag="Q" Content="Q" Click="Button_Click"/>
+                <Button Grid.Column="02" Grid.ColumnSpan="2" Grid.Row="1" Tag="W" Content="W" Click="Button_Click"/>
+                <Button Grid.Column="03" Grid.ColumnSpan="2" Grid.Row="1" Tag="E" Content="E" Click="Button_Click"/>
+                <Button Grid.Column="04" Grid.ColumnSpan="2" Grid.Row="1" Tag="R" Content="R" Click="Button_Click"/>
+                <Button Grid.Column="05" Grid.ColumnSpan="2" Grid.Row="1" Tag="T" Content="T" Click="Button_Click"/>
+                <Button Grid.Column="06" Grid.ColumnSpan="2" Grid.Row="1" Tag="Y" Content="Y" Click="Button_Click"/>
+                <Button Grid.Column="07" Grid.ColumnSpan="2" Grid.Row="1" Tag="U" Content="U" Click="Button_Click"/>
+                <Button Grid.Column="08" Grid.ColumnSpan="2" Grid.Row="1" Tag="I" Content="I" Click="Button_Click"/>
+                <Button Grid.Column="09" Grid.ColumnSpan="2" Grid.Row="1" Tag="O" Content="O" Click="Button_Click"/>
+                <Button Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="1" Tag="P" Content="P" Click="Button_Click"/>
+
+                <Button Grid.Column="02" Grid.ColumnSpan="1" Grid.Row="2" Tag="A" Content="A" Click="Button_Click"/>
+                <Button Grid.Column="03" Grid.ColumnSpan="1" Grid.Row="2" Tag="S" Content="S" Click="Button_Click"/>
+                <Button Grid.Column="04" Grid.ColumnSpan="1" Grid.Row="2" Tag="D" Content="D" Click="Button_Click"/>
+                <Button Grid.Column="05" Grid.ColumnSpan="1" Grid.Row="2" Tag="F" Content="F" Click="Button_Click"/>
+                <Button Grid.Column="06" Grid.ColumnSpan="1" Grid.Row="2" Tag="G" Content="G" Click="Button_Click"/>
+                <Button Grid.Column="07" Grid.ColumnSpan="1" Grid.Row="2" Tag="H" Content="H" Click="Button_Click"/>
+                <Button Grid.Column="08" Grid.ColumnSpan="1" Grid.Row="2" Tag="J" Content="J" Click="Button_Click"/>
+                <Button Grid.Column="09" Grid.ColumnSpan="1" Grid.Row="2" Tag="K" Content="K" Click="Button_Click"/>
+                <Button Grid.Column="10" Grid.ColumnSpan="1" Grid.Row="2" Tag="L" Content="L" Click="Button_Click"/>
+
+                <Button Grid.Column="02" Grid.ColumnSpan="2" Grid.Row="3" Tag="Z" Content="Z" Click="Button_Click"/>
+                <Button Grid.Column="03" Grid.ColumnSpan="2" Grid.Row="3" Tag="X" Content="X" Click="Button_Click"/>
+                <Button Grid.Column="04" Grid.ColumnSpan="2" Grid.Row="3" Tag="C" Content="C" Click="Button_Click"/>
+                <Button Grid.Column="05" Grid.ColumnSpan="2" Grid.Row="3" Tag="V" Content="V" Click="Button_Click"/>
+                <Button Grid.Column="06" Grid.ColumnSpan="2" Grid.Row="3" Tag="B" Content="B" Click="Button_Click"/>
+                <Button Grid.Column="07" Grid.ColumnSpan="2" Grid.Row="3" Tag="N" Content="N" Click="Button_Click"/>
+                <Button Grid.Column="08" Grid.ColumnSpan="2" Grid.Row="3" Tag="M" Content="M" Click="Button_Click"/>
+            </Grid>
+
+        </Grid>
+    </StackPanel>
+</UserControl>
